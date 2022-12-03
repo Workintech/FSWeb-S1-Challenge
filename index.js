@@ -149,10 +149,11 @@ Aşağıdakileri konsolda gösterim (console.log) işlemi gerçekleştirerek, yu
 (işlev yazmanıza gerek yok) */
 
 //(1) Dizideki ilk fenomen (0. dizin) profil (profile) adı
+console.log(fenomenler[0].profile);
 
 
 //(2) Dizideki üçüncü fenomenin (2. dizin) takipçi (followers) sayısı
-
+console.log(fenomenler[1].followers);
 
 /* Görev 2 (otomatik kontrol testi yapılmayacak):
 (işlev yazmanıza gerek yok)
@@ -168,9 +169,11 @@ Aşağıdaki işlemleri yapmak için indekseGoreFenomen işlevini kullanın:
 NOT: DÖNDÜĞÜNÜZ DİZİN YUKARIDAKİ BİÇİMLE EŞLEŞMESİ GEREKİR, YA DA TESTİ GEÇMEYECEKTİR!
 ÖRNEK: fenomenler dizisi ve 3 sayısı ile indekseGoreFenomen çağrılırsa, `3. indekste bulunan fenomen: Leo Messi' */
 
-function indekseGoreFenomen(/*kod*/) {
-  /*kod*/
+function indekseGoreFenomen(feno,index) {
+  return `${index}. indekste bulunan fenomen: ${feno[index].profile}`
+  
 }
+indekseGoreFenomen(fenomenler,3);
 
 
 
@@ -182,9 +185,14 @@ Aşağıdakileri yapmak için profilListesi'ni kullanın:
 🌟 Dönüş ÖRNEĞİ: ["Instagram", "Cristiano Ronaldo", "Kylie"....]
 */
 
-function profilListesi(/*kod*/) {
-  /*kod*/
+function profilListesi(feno) {
+  let cc=[...feno];
+  for(let i = 0; i<cc.length;i++){
+   cc[i]=feno[i].profile;
+  }return cc;
 }
+profilListesi(fenomenler);
+
 
 
 
@@ -197,10 +205,13 @@ Aşağıdakileri yapmak için fenomenSil'i kullanın:
 5. Ortaya çıkan diziyi döndürün
 
 ÖRNEK: fenomenSil işlevi fenomenler dizisi ve 0 indeks sayısı ile çağrılırsa, veri kümemizden 'Instagram' kaldırılmış olarak döndürür. */
-function fenomenSil(/*kod*/) {
-  /*kod*/
+function fenomenSil(feno,indexx) {
+  let bb=[...feno];
+  bb.splice(indexx,1);
+  return bb;
+  
 }
-
+fenomenSil(fenomenler,0)
 
 
 /* Görev 6:
@@ -219,10 +230,21 @@ Aşağıdakileri yapmak için fenomenEkle'i kullanın:
 5. Yeni oluşturulan nesneyi kopyalanan diziye ekleyin, ardından kopyalanan diziyi döndürün
 
 ÖRNEK: fenomenEkle(fenomenler, 6, "Workintech", 10000000, 2022, "Instagram") çağrıldığında dizinin sonuna yukarıdaki nesne en sona eklenerek yeni fenomenler dizisini döndürmelidir. */
-
-function fenomenEkle(/*kod*/) {
-  /*kod*/
+let xo=[];
+function fenomenEkle(fenoss,sayi,profil,takipci,paylas,uygulama) {
+  let xo=[...fenoss];
+  xo.push({
+    "number": sayi,
+    "profile": profil,
+    "followers": takipci,
+    "posts": paylas,
+    "platform": uygulama,
+  }
+  )
+  return xo; 
 }
+fenomenEkle(fenomenler, 6, "Workintech", 10000000, 2022, "Instagram");
+console.log(xo);
 
 
 /* Görev 7:
@@ -233,9 +255,17 @@ Aşağıdakileri yapmak için enFenomenler'yi kullanın:
 ÖRNEK: enFenomenler(fenomenler) çağrıldığında sonuç olarak ["Instagram", "Cristiano Ronaldo", ... "Khabane lame"] dönemelidir
 */
 
-function enFenomenler(/*kod*/) {
-  /*kod*/
+function enFenomenler(dizi){
+  let xa=[];
+  for(let i =0;i<dizi.length;i++){
+    if(dizi[i].followers>100000000){
+      xa.push(dizi[i]["profile"])
+    }
+  }
+  return xa;
 }
+  
+console.log(enFenomenler(fenomenler));
 
 
 /* Görev 8:
@@ -247,9 +277,16 @@ Aşağıdakileri yapmak için fenomenGonderimSayisi'nı kullanın:
 ÖRNEK: fenomenGonderimSayisi(fenomenler, 'Will Smith') çağrıldığında "136" dönmelidir
 */
 
-function fenomenGonderimSayisi(/*kod*/){
-  /*kod*/
+function fenomenGonderimSayisi(fenog,prof){
+  let axa=[];
+  for(let i =0;i<fenog.length;i++){
+    if(prof===fenog[i].profile){
+    axa=fenog[i].posts
+    }
+  
+  } return axa
 }
+fenomenGonderimSayisi(fenomenler,"Will Smith")
 
 
 
@@ -264,10 +301,20 @@ Not: Gönderi sayısı belli olmayan (NA) hesaba katmayın.
 Örnek: platformaGoreCokGonderiYapanFenomen(fenomenler, 'TikTok') çağrıldığında "charli damelio" dönmelidir
 */
 
-function platformaGoreCokGonderiYapanFenomen(/*kod*/){
-  /*kod*/
+function platformaGoreCokGonderiYapanFenomen(fenoq,plat){
+  let ox;
+  let max=0;
+  for(let i =0;i<fenoq.length;i++){
+    if(plat===fenoq[i].platform){
+      if(fenoq[i].posts!=="NA"&&fenoq[i].posts>max){
+        max=fenoq[i].posts;
+        ox=fenoq[i].profile;
+      }
+    }
+  }
+  return ox;
 }
-
+console.log(platformaGoreCokGonderiYapanFenomen(fenomenler,"Twitter"));
 
 
 /* ***** GÖREVLERİN SONU ***** */
